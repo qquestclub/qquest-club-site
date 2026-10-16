@@ -1,0 +1,28 @@
+# Render Blueprint for the QQuEST API (spec/decisions.md D-021).
+# UNVERIFIED: written from Render's documented Blueprint format without a live deploy.
+# The first deploy (task M0-BE-02) may need small fixes; log them in AGENT_LOG.md.
+#
+# Free web services sleep after 15 minutes without traffic and take about a minute to wake.
+# The website's content pages never call this API, so a sleeping API cannot take them down.
+services:
+  - type: web
+    name: qquest-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    # The free plan has no separate pre-deploy step, so migrations run at start-up.
+    startCommand: python manage.py migrate --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:$PORT
+    # This path does NOT touch the database, so health checks never wake Neon.
+    healthCheckPath: /api/health/
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false   # paste the Neon connection string in the Render dashboard
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false   # the website's address, for example https://qquest.vercel.app
+      - key: CSRF_TRUSTED_ORIGINS
+        sync: false   # this API's own https address, needed for the /admin/ login

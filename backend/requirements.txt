@@ -1,0 +1,13 @@
+# Runtime dependencies for the QQuEST API (CONTRACT INV-1: this list is an allowlist,
+# enforced by backend/tests/test_invariants.py. To add a package: add a decision to
+# spec/decisions.md, add it here AND to ALLOWED_PACKAGES in that test, in one change.)
+#
+# Django 5.2 is a long-term-support release (security fixes until April 2028), chosen
+# so a club does not have to migrate every year (spec/decisions.md D-023).
+Django>=5.2,<5.3
+djangorestframework>=3.16,<4
+django-cors-headers>=4.7,<5
+dj-database-url>=3.0,<4
+psycopg[binary]>=3.2,<4
+gunicorn>=23.0
+whitenoise>=6.9,<7

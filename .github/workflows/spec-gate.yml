@@ -1,0 +1,24 @@
+# The CI gate is the one that cannot be skipped: pre-commit hooks can be bypassed with
+# --no-verify, and agents sometimes do exactly that.
+# NOTE: `npm ci` needs package-lock.json. Until task M0-REPO-01 commits it, this job fails
+# at the install step; that is expected and tells you the task is still open.
+name: spec-gate
+on: [push, pull_request]
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_DEBUG: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: pip install -r backend/requirements.txt
+      - name: Spec lint + typecheck + tests + build
+        run: bash scripts/spec-gate.sh ci

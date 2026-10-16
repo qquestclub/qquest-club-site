@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# secrets: never commit these
+.env
+.env.*
+!.env.example
+
+# tooling
+*.tsbuildinfo
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+coverage/
+dist/
+build/
+.vercel/
+
+# python / django (backend/)
+.venv/
+venv/
+db.sqlite3
+backend/staticfiles/
+backend/.env

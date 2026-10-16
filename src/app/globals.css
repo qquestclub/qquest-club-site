@@ -1,0 +1,88 @@
+/* One stylesheet on purpose (decision D-014). Colours are variables so the brand task
+   (M1-BRAND-02) only edits this block. Check contrast again after changing them. */
+:root {
+  --bg: #fffaf1;
+  --surface: #ffffff;
+  --ink: #211c2e;
+  --muted: #5b5568;
+  --accent: #b3410c;
+  --accent-ink: #ffffff;
+  --line: #e8dfcf;
+  --radius: 0.75rem;
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14121f;
+    --surface: #1d1a2c;
+    --ink: #f3eee4;
+    --muted: #b9b2c8;
+    --accent: #ffa45c;
+    --accent-ink: #14121f;
+    --line: #342f48;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  font-size: 1.0625rem;
+}
+
+.container { width: 100%; max-width: 68rem; margin: 0 auto; padding: 0 1rem; }
+main.container { padding-top: 2rem; padding-bottom: 3rem; }
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.2; margin: 1.6em 0 0.5em; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); margin-top: 0.3em; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; margin-top: 0.3em; }
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 0.25rem; }
+
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: 0.5rem 1rem; z-index: 10; }
+.skip-link:focus { left: 0; }
+
+.site-header { border-bottom: 3px solid var(--accent); background: var(--surface); }
+.header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.5rem; padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.brand { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem; list-style: none; margin: 0; padding: 0; }
+.nav a { color: var(--ink); text-decoration: none; padding: 0.25rem 0; border-bottom: 2px solid transparent; }
+.nav a:hover { border-bottom-color: var(--accent); }
+
+.hero { padding: 1.5rem 0 0.5rem; }
+.lead { font-size: 1.2rem; color: var(--muted); max-width: 46rem; }
+.meta { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.25rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.muted { color: var(--muted); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 1rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.card p { margin: 0.4rem 0; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 0.6rem 0; padding: 0; }
+.tags li { border: 1px solid var(--line); border-radius: 999px; padding: 0.05rem 0.7rem; font-size: 0.85rem; color: var(--muted); }
+
+.button { display: inline-block; background: var(--accent); color: var(--accent-ink); padding: 0.6rem 1.2rem; border-radius: var(--radius); text-decoration: none; font-weight: 600; margin: 0.2rem 0.4rem 0.2rem 0; }
+.button.secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+.button:hover { filter: brightness(1.08); }
+
+.prose { max-width: 46rem; }
+.prose h2 { margin-top: 1.8em; }
+.prose blockquote { border-left: 4px solid var(--accent); margin-left: 0; padding: 0.1rem 1rem; color: var(--muted); }
+.prose pre { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); padding: 1rem; border-radius: var(--radius); }
+.prose code { font-size: 0.92em; }
+.prose img { max-width: 100%; height: auto; }
+
+.site-footer { border-top: 1px solid var(--line); padding: 1.5rem 0; font-size: 0.95rem; }
+.site-footer p { margin: 0.3rem 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

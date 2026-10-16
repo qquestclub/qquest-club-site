@@ -1,0 +1,35 @@
+{
+  "name": "qquest-club-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The permanent website of the QQuEST quantum computing club",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test \"tests/**/*.test.ts\"",
+    "spec": "python3 scripts/spec_lint.py",
+    "test:backend": "cd backend && python3 manage.py test",
+    "verify": "npm run spec && npm run typecheck && npm test && npm run test:backend && npm run build",
+    "prepare": "git config core.hooksPath .githooks || true"
+  },
+  "dependencies": {
+    "marked": "^18.0.10",
+    "next": "^16.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "yaml": "^2.8.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}
