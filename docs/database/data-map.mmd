@@ -1,0 +1,39 @@
+---
+title: Where every piece of site data lives
+---
+flowchart LR
+    subgraph GIT["Git: content/ (reviewed in pull requests, D-001)"]
+        DIG["digest/<br/>issue-NNN-*.md"]
+        EVM["events/<br/>slug.md"]
+        PRJ["projects/<br/>slug.md"]
+        MEM["members/<br/>slug.md"]
+        PAG["pages/<br/>about.md, join.md"]
+    end
+
+    subgraph DB["Postgres on Neon: runtime state only (D-020)"]
+        EV["Event<br/>capacity, status, deadline"]
+        REG["Registration"]
+        CHK["CheckIn"]
+        EML["EmailLog (M3)"]
+        CER["Certificate (later)"]
+        SUB["Subscriber (later)"]
+        APP["MembershipApplication (later)"]
+        USR["auth_user (Django)"]
+    end
+
+    DIG -- "authors: member slugs" --> MEM
+    PRJ -- "team: member slugs" --> MEM
+    EVM == "same slug (join key, D-024)" ==> EV
+    EV --> REG --> CHK
+    REG --> EML
+    REG --> CER
+    USR -. "username text" .-> CHK
+
+    style GIT fill:#fffaf0,stroke:#b7791f
+    style DB fill:#f4fbf6,stroke:#1e7e34
+    classDef git fill:#fdf3e3,stroke:#b7791f,color:#3a2a0c
+    classDef db fill:#e6f4ea,stroke:#1e7e34,color:#14301c
+    classDef later fill:#f3e8fb,stroke:#7b3fa0,color:#2c1240
+    class DIG,EVM,PRJ,MEM,PAG git
+    class EV,REG,CHK,USR db
+    class EML,CER,SUB,APP later

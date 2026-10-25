@@ -6,6 +6,19 @@ Every session writes an entry, including failed sessions. "Noticed, did not fix"
 
 ---
 
+## 2026-10-25 — Codex — database design documentation alignment
+
+**Milestone:** M0 (documentation only)
+**Tasks attempted:** User-requested database design documentation; no task from `spec/tasks.md` was attempted.
+**Landed:** The `docs/database/` bundle was already present in the workspace. Reviewed its README, editable Mermaid sources, image exports, and model references; clarified that proposed public routes do not change INV-8 and that proposed public responses containing personal data need explicit contract and test approval. Added the architecture pointer and D-026.
+**Did not land:** No backend or `CONTRACT.md` changes. No proposed M3 or later tables or routes were implemented. No tests were run; this was a documentation-only change.
+**Blockers:** none.
+**Noticed, did not fix:** `qquest-erd.png` and `qquest-data-map.png` are extra image copies not referenced by the README. They were left untouched because the requested relative links already use `erd.png` and `data-map.png`.
+**Spec changes:** D-026 added; `spec/architecture.md` now points to `docs/database/README.md`. No task checkbox was changed.
+**Next action:** M0-BE-02 (Render and Neon deploy), then prepare the M3 change proposal when event management begins.
+
+---
+
 ## 2026-10-16 — Claude Sonnet 5.5 / Claude (chat with a file sandbox) — spec aligned to the Django decision
 
 **Milestone:** M0 — Walking skeleton

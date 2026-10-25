@@ -97,6 +97,8 @@ CheckIn       registration (one-to-one), checked_in_at, checked_in_by (staff use
 
 Public API routes (INV-8, exactly these four): `GET /api/health/`, `GET /api/health/db/`, `GET /api/events/`, `GET /api/events/<slug>/`. Public event fields: slug, starts_at, ends_at, capacity, registration_status, registration_deadline, seats_left. Everything else is staff-only.
 
+The full design, including diagrams, proposed tables, and the API map, is in [`docs/database/README.md`](../docs/database/README.md). Models in `backend/apps/` remain the source of truth for built behavior.
+
 Planned, not built (M3): `POST` registration, check-in and undo, CSV export. Each needs a change proposal and an INV-8 list update.
 
 ## 4. Capability register

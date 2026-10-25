@@ -1,0 +1,115 @@
+---
+title: QQuEST club site - database (runtime state only; content lives in Git)
+---
+erDiagram
+    AUTH_USER ||..o{ CHECK_IN : "username copied as text"
+    EVENT ||--o{ REGISTRATION : "has"
+    REGISTRATION ||--o| CHECK_IN : "attended as"
+    REGISTRATION ||--o{ EMAIL_LOG : "emails about"
+    REGISTRATION ||--o| CERTIFICATE : "earns"
+
+    AUTH_USER {
+        int id PK
+        string username UK "organizer login (Django built-in)"
+        string email
+        string password "hashed by Django"
+        bool is_staff "true = may use the staff API"
+        bool is_active
+        datetime last_login
+    }
+
+    EVENT {
+        int id PK
+        string slug UK "= content/events/slug.md file name"
+        datetime starts_at "with +05:30"
+        datetime ends_at "nullable, must be after starts_at"
+        int capacity "nullable = no limit"
+        string registration_status "draft | open | closed"
+        datetime registration_deadline "nullable"
+        datetime created_at
+    }
+
+    REGISTRATION {
+        uuid id PK
+        uuid token UK "random UUID4 in the QR code"
+        int event_id FK "PROTECT"
+        string name
+        string email "unique per event, ignoring case"
+        string college
+        string degree
+        string branch
+        int year_of_study "1 to 8"
+        string status "confirmed | waitlisted | cancelled"
+        datetime consent_at "required"
+        datetime created_at
+        datetime anonymised_at "M3, nullable"
+    }
+
+    CHECK_IN {
+        int id PK
+        uuid registration_id FK "one-to-one, PROTECT"
+        datetime checked_in_at
+        string checked_in_by "staff username, plain text"
+        datetime undone_at "nullable"
+        string undone_by "set together with undone_at"
+    }
+
+    EMAIL_LOG {
+        int id PK
+        uuid registration_id FK
+        string kind "qr_ticket | waitlist_promoted | reminder"
+        string status "queued | sent | failed"
+        string provider_message_id "from the HTTP email API"
+        string error "nullable, never the email body"
+        datetime created_at
+        datetime sent_at "nullable"
+    }
+
+    CERTIFICATE {
+        int id PK
+        uuid registration_id FK "one-to-one"
+        string code UK "public verification code"
+        datetime issued_at
+        string issued_by "staff username"
+    }
+
+    SUBSCRIBER {
+        int id PK
+        string email UK "unique, ignoring case"
+        string status "pending | confirmed | unsubscribed"
+        uuid confirm_token UK "double opt-in link"
+        uuid unsubscribe_token UK
+        datetime consent_at
+        datetime confirmed_at "nullable"
+        datetime unsubscribed_at "nullable"
+        datetime created_at
+    }
+
+    MEMBERSHIP_APPLICATION {
+        int id PK
+        string name
+        string email
+        string college
+        string degree
+        string branch
+        int year_of_study
+        string interests "free text"
+        string status "new | reviewed | accepted | rejected"
+        string reviewed_by "staff username, nullable"
+        datetime consent_at
+        datetime created_at
+    }
+
+    EVENT:::built
+    REGISTRATION:::built
+    CHECK_IN:::built
+    AUTH_USER:::django
+    EMAIL_LOG:::m3
+    SUBSCRIBER:::later
+    MEMBERSHIP_APPLICATION:::later
+    CERTIFICATE:::later
+
+    classDef built fill:#e6f4ea,stroke:#1e7e34,color:#14301c
+    classDef django fill:#e8eefb,stroke:#3b5bb5,color:#16224a
+    classDef m3 fill:#fff4d6,stroke:#b7791f,color:#4a3206
+    classDef later fill:#f3e8fb,stroke:#7b3fa0,color:#2c1240
