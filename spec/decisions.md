@@ -323,3 +323,16 @@ Because the API sleeps, content pages must never need it (INV-2). Registration p
 - *Clerk now* — duplicates Django's auth for no v1 gain.
 - *Home-built password auth* — Django's is audited and free.
 **Revisit if:** members want sign-in on the Next.js site, or organizers need Google sign-in. Then decide between Clerk and `django-allauth`.
+
+---
+
+## D-026 — The database design covers runtime state for the whole site; content stays in Git
+
+**Status:** decided (design only; only Event, Registration and CheckIn are built)
+**Decision:** The site's data design is published in `docs/database/`. It has three built tables, one planned table (`EmailLog`, M3) and three later ones (`Subscriber`, `MembershipApplication`, `Certificate`). Digest, events' text, projects, members and pages are not tables. The API route list in that document is a proposal; each planned route requires an approved change proposal before implementation. Any new public route must also be deliberately added to the INV-8 public-route list and tests. A proposed public route that returns personal data requires explicit approval to update the applicable INV-8 privacy rule and tests before implementation.
+**Rationale:** The team asked for one design that shows how the whole backend fits together, so API work does not start from guesses. Showing the Git content next to the tables makes the single join (event slug) and the reason for it visible. Later tables are drawn now so that today's tables do not block them (for example, `Registration` already has a token and consent timestamp that `Certificate` and `EmailLog` build on), but they are marked as not scheduled so nobody builds them early.
+**Rejected:**
+- *Every content type as a table* — reverses D-001: loses pull-request review and Git history, and needs an editor UI.
+- *Drawing only the built tables* — leaves the API contract to be guessed per feature.
+- *Foreign key from `CheckIn` to the staff user* — deleting a staff account would damage the audit trail; a text copy of the username survives (D-025).
+**Revisit if:** the team decides Django's admin should manage events or blog posts (that needs a new decision superseding D-001), or when M3 starts and the real registration fields are confirmed.
