@@ -7,8 +7,8 @@ const root = process.cwd();
 
 // INV-1: adding a dependency means adding it HERE, with a spec/decisions.md entry in the
 // same pull request. This list is the tripwire that makes that conversation happen.
-const ALLOWED_DEPENDENCIES = new Set(["marked", "next", "react", "react-dom", "yaml", "zod"]);
-const ALLOWED_DEV_DEPENDENCIES = new Set(["@types/node", "@types/react", "@types/react-dom", "tsx", "typescript"]);
+const ALLOWED_DEPENDENCIES = new Set(["animejs", "marked", "next", "react", "react-dom", "yaml", "zod"]);
+const ALLOWED_DEV_DEPENDENCIES = new Set(["@types/animejs", "@types/node", "@types/react", "@types/react-dom", "tsx", "typescript"]);
 
 function sourceFiles(dir: string): string[] {
   const found: string[] = [];

@@ -336,3 +336,15 @@ Because the API sleeps, content pages must never need it (INV-2). Registration p
 - *Drawing only the built tables* — leaves the API contract to be guessed per feature.
 - *Foreign key from `CheckIn` to the staff user* — deleting a staff account would damage the audit trail; a text copy of the username survives (D-025).
 **Revisit if:** the team decides Django's admin should manage events or blog posts (that needs a new decision superseding D-001), or when M3 starts and the real registration fields are confirmed.
+
+---
+
+## D-027 — anime.js for frontend animations
+
+**Status:** decided
+**Decision:** `animejs` is permitted as a frontend animation library to power smooth geometric transitions, accent block movement, and scroll reveal animations.
+**Rationale:** Lightweight (zero external dependencies), runs completely in client browsers at zero hosting cost, and provides smooth programmatic easing for editorial layout elements without heavy UI runtime overhead.
+**Rejected:**
+- *Heavy 3D or full physics engines* — too large and impacts mobile load times.
+- *CSS-only for complex sequenced choreography* — difficult to coordinate dynamically across interactive cards.
+**Revisit if:** CSS native animation capabilities or lighter micro-utilities suffice for the design requirements.

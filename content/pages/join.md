@@ -1,6 +1,6 @@
 ---
-title: "Join QQuEST"
-description: "How to become a member of the QQuEST quantum computing club."
+title: "Join QQuest"
+description: "How to become a member of the QQuest quantum computing club."
 cta_label: "See us on GitHub"
 cta_url: "https://github.com/qquestclub"
 ---

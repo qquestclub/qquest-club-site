@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getContent } from "@/lib/content/load";
 
-export const metadata: Metadata = { title: "Team", description: "The people behind QQuEST." };
+export const metadata: Metadata = { title: "Team", description: "The people behind QQuest." };
 
 export default function TeamPage() {
   const { members } = getContent();

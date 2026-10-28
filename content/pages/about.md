@@ -1,13 +1,13 @@
 ---
-title: "About QQuEST"
-description: "Who we are, what we run, and what Kyu QQuEST means."
+title: "About QQuest"
+description: "Who we are, what we run, and what Kyu QQuest means."
 ---
 
-QQuEST is the quantum computing club of MIT-ADT University, Pune. We run workshops and
+QQuest is the quantum computing club of MIT-ADT University, Pune. We run workshops and
 events, build projects with Qiskit, and publish a weekly digest of what happened in
 quantum.
 
-## Kyu QQuEST?
+## Kyu QQuest?
 
 *Kyu* is "why" in Hindi. The club is built around curiosity: ask why, then find out.
 

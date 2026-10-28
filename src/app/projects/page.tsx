@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ProjectCard } from "@/components/Cards";
 import { getContent } from "@/lib/content/load";
 
-export const metadata: Metadata = { title: "Projects", description: "What QQuEST members have built." };
+export const metadata: Metadata = { title: "Projects", description: "What QQuest members have built." };
 
 export default function ProjectsPage() {
   const { projects } = getContent();

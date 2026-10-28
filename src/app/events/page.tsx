@@ -4,7 +4,7 @@ import { getContent } from "@/lib/content/load";
 import { splitEvents } from "@/lib/dates";
 
 export const revalidate = 3600;
-export const metadata: Metadata = { title: "Events", description: "Upcoming and past QQuEST events." };
+export const metadata: Metadata = { title: "Events", description: "Upcoming and past QQuest events." };
 
 export default function EventsPage() {
   const { upcoming, past } = splitEvents(getContent().events, new Date());

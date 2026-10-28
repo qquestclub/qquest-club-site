@@ -2,12 +2,12 @@
 // The tagline and digest name are PROVISIONAL until task M1-BRAND-01 decides them.
 
 export const site = {
-  name: "QQuEST",
-  tagline: "Kyu QQuEST? Because we like to ask why.",
+  name: "QQuest",
+  tagline: "Kyu QQuest? Because we like to ask why.",
   description:
-    "QQuEST is the quantum computing club of MIT-ADT University, Pune. We run events, build projects and publish a weekly digest of what happened in quantum.",
-  digestName: "QQuEST Weekly Digest",
-  digestDescription: "A weekly, source-cited look at what happened in quantum computing, written by QQuEST members.",
+    "QQuest is the quantum computing club of MIT-ADT University, Pune. We run events, build projects and publish a weekly digest of what happened in quantum.",
+  digestName: "QQuest Weekly Digest",
+  digestDescription: "A weekly, source-cited look at what happened in quantum computing, written by QQuest members.",
   // Taken from the QFF 2026 site; confirm it is the club's role mailbox (M0-OWN-01).
   contactEmail: "qquest@mitadt.edu.in",
   github: "https://github.com/qquestclub",
