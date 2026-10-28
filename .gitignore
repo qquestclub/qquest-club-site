@@ -27,3 +27,7 @@ venv/
 db.sqlite3
 backend/staticfiles/
 backend/.env
+
+# Duplicate database diagram exports (canonical files are erd.png and data-map.png)
+docs/database/qquest-erd.png
+docs/database/qquest-data-map.png

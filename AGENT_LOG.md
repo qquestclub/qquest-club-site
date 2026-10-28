@@ -6,6 +6,19 @@ Every session writes an entry, including failed sessions. "Noticed, did not fix"
 
 ---
 
+## 2026-10-28 — ignore duplicate database diagram copies
+
+**Milestone:** M0 (documentation maintenance)
+**Tasks attempted:** User-requested cleanup of duplicate database diagram exports; no task from `spec/tasks.md` was attempted.
+**Landed:** Added exact-path ignore rules for `docs/database/qquest-erd.png` and `docs/database/qquest-data-map.png`. Both files are byte-identical to the canonical `erd.png` and `data-map.png` exports.
+**Did not land:** The duplicate files were not deleted, and no remote push was performed. No tests were run; only the Git diff and status were checked.
+**Blockers:** none.
+**Noticed, did not fix:** none.
+**Spec changes:** none.
+**Next action:** none.
+
+---
+
 ## 2026-10-25 — Codex — database design documentation alignment
 
 **Milestone:** M0 (documentation only)
