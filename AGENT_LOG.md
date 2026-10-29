@@ -6,6 +6,19 @@ Every session writes an entry, including failed sessions. "Noticed, did not fix"
 
 ---
 
+## 2026-10-29 — frontend specification and mockup board
+
+**Milestone:** M1 planning (documentation only)
+**Tasks attempted:** User-requested publication of the frontend specification and mockups; no task from `spec/tasks.md` was attempted.
+**Landed:** Added `spec/frontend.md` and the ten-screen `spec/QQuEST Club Site Mockup.html` design board.
+**Did not land:** No frontend implementation or visual direction was selected. No tests were run.
+**Blockers:** none.
+**Noticed, did not fix:** The A/B/C visual direction and brand wording remain team decisions, as recorded in the frontend specification.
+**Spec changes:** Added the frontend page and visual specification and its mockup board; no contract or architecture behavior was changed.
+**Next action:** Team review of the mockup options and resolution of the relevant M1 brand tasks.
+
+---
+
 ## 2026-10-28 — ignore duplicate database diagram copies
 
 **Milestone:** M0 (documentation maintenance)
